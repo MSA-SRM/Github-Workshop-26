@@ -6,8 +6,9 @@
 // "Timing budget" table for structural fields and the per-act prose for
 // beats. Icon names are Octicon names drawn from Appendix A's Topic →
 // Octicon → Tier inventory, matched to the concept each beat teaches.
-// Lab steps described in §6 are intentionally excluded — labs are Task 3's
-// job, so LABS stays [] here.
+// Labs and their steps are transcribed from spec §6 "Session flow" the same
+// way: one step per discrete attendee action, icons matched to the concept
+// each step teaches via Appendix A's Topic → Octicon → Tier inventory.
 
 export const ACTS = [
   {
@@ -142,7 +143,112 @@ export const ACTS = [
   },
 ];
 
-export const LABS = [];
+export const LABS = [
+  {
+    id: 'l1', n: 1, actId: 'a1', title: 'Create your repo', minutes: 4,
+    steps: [
+      { id: 'l1s1', text: 'Click New repository', icons: ['repo', 'plus'] },
+      { id: 'l1s2', text: 'Name it well — no ALL CAPS, no spaces, hyphens not underscores', icons: ['typography'] },
+      { id: 'l1s3', text: 'Add a short description', icons: ['info'] },
+      { id: 'l1s4', text: 'Set visibility to Public', icons: ['globe'] },
+      { id: 'l1s5', text: 'Check "Add a README file"', icons: ['book'] },
+      { id: 'l1s6', text: 'Add a .gitignore', icons: ['eye-closed'] },
+      { id: 'l1s7', text: 'Choose the MIT licence', icons: ['law'] },
+      { id: 'l1s8', text: 'Click Create repository', icons: [] },
+    ],
+  },
+  {
+    id: 'l2', n: 2, actId: 'a1', title: 'Make the README yours', minutes: 3,
+    steps: [
+      { id: 'l2s1', text: 'Open README.md and click the pencil to edit', icons: ['pencil'] },
+      { id: 'l2s2', text: 'Add a heading', icons: ['heading'] },
+      { id: 'l2s3', text: 'Add bold text', icons: ['bold'] },
+      { id: 'l2s4', text: 'Add a list', icons: ['list-unordered'] },
+      { id: 'l2s5', text: 'Add a task list', icons: ['tasklist'] },
+      { id: 'l2s6', text: 'Write a properly formed commit message', icons: ['typography'] },
+      { id: 'l2s7', text: 'Commit the change', icons: ['git-commit'] },
+    ],
+  },
+  {
+    id: 'l3', n: 3, actId: 'a2', title: 'Fork the mosaic', minutes: 3,
+    steps: [
+      { id: 'l3s1', text: 'Star universe-mosaic', icons: ['star'] },
+      { id: 'l3s2', text: 'Watch universe-mosaic', icons: ['eye'] },
+      { id: 'l3s3', text: 'Fork universe-mosaic', icons: ['repo-forked'] },
+      { id: 'l3s4', text: 'Observe the URL now carries your username', icons: [] },
+      { id: 'l3s5', text: 'Observe the "forked from" provenance line', icons: ['repo-forked'] },
+    ],
+  },
+  {
+    id: 'l4', n: 4, actId: 'a3', title: 'Branch', minutes: 2,
+    steps: [
+      { id: 'l4s1', text: 'Open the branch dropdown', icons: ['git-branch'] },
+      { id: 'l4s2', text: 'Type the new branch name: add-<username>', icons: ['typography'] },
+      { id: 'l4s3', text: 'Create branch: add-<username>', icons: ['git-branch'] },
+    ],
+  },
+  {
+    id: 'l5', n: 5, actId: 'a3', title: 'Claim your pixel', minutes: 5,
+    steps: [
+      { id: 'l5s1', text: 'Add file → Create new file', icons: ['file-added'] },
+      { id: 'l5s2', text: 'Path: cells/<your-username>.json — typing / creates the folder', icons: ['file-directory'] },
+      { id: 'l5s3', text: 'Paste the template from the Guide', icons: [] },
+      { id: 'l5s4', text: 'Change one word: your colour — acid, lime, purple, pink, teal or indigo', icons: [] },
+      { id: 'l5s5', text: 'Commit message: feat: add <username> cell', icons: ['git-commit'] },
+      { id: 'l5s6', text: 'Commit to your branch, not to main. If the box says "Commit directly to the main branch", stop — you are in the wrong place.', icons: ['alert'], warn: true },
+      { id: 'l5s7', text: 'Commit new file', icons: ['check'] },
+    ],
+  },
+  {
+    id: 'l6', n: 6, actId: 'a4', title: 'Open the PR', minutes: 5,
+    steps: [
+      { id: 'l6s1', text: 'Click Compare & pull request', icons: ['git-pull-request'] },
+      { id: 'l6s2', text: 'Verify base and compare out loud together', icons: ['arrow-right', 'git-compare'] },
+      { id: 'l6s3', text: 'Click Create pull request', icons: ['git-pull-request'] },
+      { id: 'l6s4', text: 'Watch the check turn red ✗', icons: ['x-circle-fill'] },
+      { id: 'l6s5', text: "Read the bot's comment", icons: ['comment-discussion'] },
+      { id: 'l6s6', text: 'Edit the PR title to add 🍉', icons: ['pencil'] },
+      { id: 'l6s7', text: 'Watch the check turn green ✓', icons: ['check-circle-fill'] },
+      { id: 'l6s8', text: 'Auto-merge', icons: ['git-merge'] },
+      { id: 'l6s9', text: 'Watch your pixel light up on the projector', icons: [] },
+    ],
+  },
+  {
+    id: 'l7', n: 7, actId: 'a5', title: 'Sync your fork', minutes: 3,
+    steps: [
+      { id: 'l7s1', text: 'Click Sync fork', icons: ['sync'] },
+      { id: 'l7s2', text: 'Click Update branch', icons: ['sync'] },
+      { id: 'l7s3', text: 'Watch 34 pixels arrive in your own copy', icons: [] },
+      { id: 'l7s4', text: 'Confirm "This branch is up to date"', icons: ['check-circle'] },
+      { id: 'l7s5', text: 'Open Compare to see nothing remains', icons: ['git-compare'] },
+    ],
+  },
+  {
+    id: 'l8', n: 8, actId: 'a6', title: 'Sign the wall', minutes: 4,
+    steps: [
+      { id: 'l8s1', text: 'Create branch sign-<username>', icons: ['git-branch'] },
+      { id: 'l8s2', text: 'Open WALL.md and click the pencil to edit', icons: ['pencil'] },
+      { id: 'l8s3', text: 'Replace nobody with your username', icons: [] },
+      { id: 'l8s4', text: 'Commit to your branch', icons: ['git-commit'] },
+      { id: 'l8s5', text: 'Open a pull request with 🍉 in the title', icons: ['git-pull-request'] },
+      { id: 'l8s6', text: 'Hands off keyboards', icons: [] },
+    ],
+  },
+  {
+    id: 'l9', n: 9, actId: 'a6', title: 'Resolve it', minutes: 6,
+    steps: [
+      { id: 'l9s1', text: 'Click Resolve conflicts', icons: ['alert'] },
+      { id: 'l9s2', text: "Read <<<<<<< HEAD — what's there", icons: ['code'] },
+      { id: 'l9s3', text: 'Read ======= — the divider', icons: ['code'] },
+      { id: 'l9s4', text: "Read >>>>>>> — what you're bringing", icons: ['code'] },
+      { id: 'l9s5', text: 'Decide, keeping both names', icons: ['pencil'] },
+      { id: 'l9s6', text: 'Delete all three marker lines — the step people miss', icons: ['alert'], warn: true },
+      { id: 'l9s7', text: 'Click Mark as resolved', icons: ['check'] },
+      { id: 'l9s8', text: 'Click Commit merge', icons: ['git-merge'] },
+      { id: 'l9s9', text: 'Watch it merge', icons: ['git-merge'] },
+    ],
+  },
+];
 export const GROUPS = [];
 
 export const CURRICULUM = { acts: ACTS, labs: LABS, groups: GROUPS };
