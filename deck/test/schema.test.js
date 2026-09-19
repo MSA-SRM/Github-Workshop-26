@@ -46,4 +46,36 @@ describe('validateCurriculum', () => {
     expect(r.ok).toBe(false);
     expect(r.errors.join()).toMatch(/end/);
   });
+
+  it('rejects a duplicate act id', () => {
+    const bad = structuredClone(minimal);
+    bad.acts.push(structuredClone(bad.acts[0]));
+    const r = validateCurriculum(bad);
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/duplicate act id/);
+  });
+
+  it('rejects a lab with non-positive minutes', () => {
+    const bad = structuredClone(minimal);
+    bad.labs[0].minutes = 0;
+    const r = validateCurriculum(bad);
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/minutes/);
+  });
+
+  it('rejects a step with no text', () => {
+    const bad = structuredClone(minimal);
+    bad.labs[0].steps[0].text = '';
+    const r = validateCurriculum(bad);
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/no text/);
+  });
+
+  it('rejects bad icons', () => {
+    const bad = structuredClone(minimal);
+    bad.groups[0].topics[0].icons = 'repo';
+    const r = validateCurriculum(bad);
+    expect(r.ok).toBe(false);
+    expect(r.errors.join()).toMatch(/icons must be an array/);
+  });
 });
