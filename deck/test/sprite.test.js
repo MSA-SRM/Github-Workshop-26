@@ -25,7 +25,8 @@ describe('octicon sprite', () => {
 
   it('embeds symbols rather than remote references', () => {
     expect(SPRITE).toContain('<symbol id="oct-repo"');
-    expect(SPRITE).not.toMatch(/https?:\/\//);
+    const withoutNamespace = SPRITE.split('http://www.w3.org/2000/svg').join('');
+    expect(withoutNamespace).not.toMatch(/https?:\/\//);
   });
 
   it('renders an svg that points at a sprite symbol', () => {
