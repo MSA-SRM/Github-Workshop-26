@@ -43,6 +43,23 @@
 .deck .slide[data-kind="lab"] ol { columns:2; column-gap:3em; font-size:clamp(22px, 1.8vw, 34px); line-height:1.42; margin:0; padding-left:1.15em; max-width:38ch; }
 .deck .slide[data-kind="lab"] li { break-inside:avoid; margin-bottom:.35em; }
 .deck .slide[data-kind="lab"] li.is-warn { color:var(--u-lime); font-weight:700; }
+.deck-controls {
+  position:fixed;
+  z-index:2;
+  inset:auto auto clamp(20px, 3vh, 42px) 10vw;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--u-fg-muted);
+  font-size:14px;
+  opacity:.18;
+  transition:opacity 160ms ease;
+}
+.deck:hover .deck-controls, .deck:focus-within .deck-controls { opacity:1; }
+.deck-controls button { border:1px solid color-mix(in srgb, var(--u-fg-muted) 55%, transparent); border-radius:999px; background:var(--u-surface); color:var(--u-fg); padding:8px 12px; font:inherit; cursor:pointer; }
+.deck-controls button:disabled { cursor:not-allowed; opacity:.35; }
+.deck-controls button:focus-visible, .rejoin-pill:focus-visible { outline:3px solid var(--u-lime); outline-offset:3px; }
+.deck-status { font-variant-numeric:tabular-nums; }
 
 @media (prefers-reduced-motion: no-preference) {
   .deck .slide.is-active { animation:slide-enter 180ms ease-out both; }
@@ -53,5 +70,6 @@
   .deck .slide::before { left:7vw; }
   .deck .slide::after { right:7vw; }
   .deck .slide[data-kind="lab"] ol { columns:1; }
+  .deck-controls { left:7vw; }
 }
 .rejoin-pill { position:fixed; inset-block-end:24px; inset-inline-end:24px; padding:12px 22px; border:0; border-radius:999px; background:var(--u-accent); color:#000; font:600 18px var(--u-font); cursor:pointer; }

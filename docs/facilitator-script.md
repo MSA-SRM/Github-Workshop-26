@@ -14,8 +14,8 @@
 | Placeholder | Fill with |
 |---|---|
 | `<LAB_REPO>` | `github.com/HelloOjasMutreja/universe-mosaic` |
-| `<MOSAIC_URL>` | the lab repo's GitHub Pages URL (Track A must be built first) |
-| `<DECK_URL>` | `msa-srm.github.io/Github-Workshop-26/deck/` |
+| `<MOSAIC_URL>` | `https://helloojasmutreja.github.io/universe-mosaic/` |
+| `<DECK_URL>` | `https://msa-srm.github.io/Github-Workshop-26/` |
 | `<HELP_ISSUE>` | direct link to the pinned "Stuck? Comment here" issue |
 
 ---

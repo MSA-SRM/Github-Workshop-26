@@ -37,11 +37,31 @@ export function renderDeck(root, { curriculum, follow }) {
   });
   const stage = document.createElement('div'); stage.className = 'stage'; slides.forEach(s => stage.append(s.el)); root.append(stage);
   let index = 0;
+  const controls = document.createElement('nav');
+  controls.className = 'deck-controls';
+  controls.setAttribute('aria-label', 'Deck controls');
+  const previous = document.createElement('button'); previous.type = 'button'; previous.textContent = '← Previous';
+  const next = document.createElement('button'); next.type = 'button'; next.textContent = 'Next →';
+  const status = document.createElement('span'); status.className = 'deck-status'; status.setAttribute('aria-live', 'polite');
+  controls.append(previous, status, next); root.append(controls);
   const pill = document.createElement('button'); pill.className = 'rejoin-pill'; pill.type = 'button'; pill.textContent = 'Rejoin presenter';
   pill.addEventListener('click', () => { follow.rejoin(); paint(); });
-  function paint() { slides.forEach((s, i) => s.el.classList.toggle('is-active', i === index)); if (follow.state === 'free') root.append(pill); else pill.remove(); }
+  function paint() {
+    slides.forEach((s, i) => s.el.classList.toggle('is-active', i === index));
+    const act = actById[slides[index].actId];
+    status.textContent = `${act.title} · ${index + 1} of ${slides.length}`;
+    previous.disabled = index === 0; next.disabled = index === slides.length - 1;
+    if (follow.state === 'free') root.append(pill); else pill.remove();
+  }
   function goTo(i) { index = Math.max(0, Math.min(slides.length - 1, i)); if (follow.slide !== index) follow.navigate(index); paint(); }
-  const onKey = e => { if (e.key === 'ArrowRight') goTo(index + 1); if (e.key === 'ArrowLeft') goTo(index - 1); };
+  previous.addEventListener('click', () => goTo(index - 1));
+  next.addEventListener('click', () => goTo(index + 1));
+  const onKey = e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(index + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); }
+    if (e.key.toLowerCase() === 'g') location.search = '?view=guide';
+    if (e.key.toLowerCase() === 'p') location.search = '?view=presenter';
+  };
   document.addEventListener('keydown', onKey); paint();
   return { slides, goTo, current: () => index, destroy: () => document.removeEventListener('keydown', onKey) };
 }
