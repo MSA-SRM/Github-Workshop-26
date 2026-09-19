@@ -6,5 +6,8 @@ export default defineConfig(({ mode }) => ({
   // root, not under the source directory name.
   base: mode === 'pages' ? '/Github-Workshop-26/' : './',
   plugins: mode === 'offline' ? [viteSingleFile()] : [],
-  build: { outDir: mode === 'offline' ? 'dist-offline' : 'dist' },
+  build: {
+    outDir: mode === 'offline' ? 'dist-offline' : 'dist',
+    assetsInlineLimit: mode === 'offline' ? 10_000_000 : undefined,
+  },
 }));
