@@ -1,0 +1,13 @@
+@import './base.css';
+.deck { height: 100vh; overflow: hidden; }
+.deck .stage { height: 100%; }
+.deck .slide { display:none; height:100%; padding:6vh 7vw; flex-direction:column; justify-content:center; gap:.6em; font-size:var(--u-deck-body); }
+.deck .slide.is-active { display:flex; }
+.deck .u-section-heading { font-size:var(--u-deck-display); margin:0; font-weight:800; }
+.deck .act-title { font-size:1.4em; color:var(--u-fg-muted); margin:0; }
+.deck .beat { font-size:1.5em; line-height:1.25; max-width:22ch; margin:0; }
+.deck .icon-row { display:flex; gap:.5em; color:var(--u-accent); flex-wrap:wrap; }
+.deck .lab-title { font-size:1.3em; color:var(--u-accent); margin:0 0 .4em; }
+.deck .slide[data-kind="lab"] ol { font-size:1em; line-height:1.7; margin:0; padding-left:1.4em; }
+.deck .slide[data-kind="lab"] li.is-warn { color:var(--u-lime); font-weight:700; }
+.rejoin-pill { position:fixed; inset-block-end:24px; inset-inline-end:24px; padding:12px 22px; border:0; border-radius:999px; background:var(--u-accent); color:#000; font:600 18px var(--u-font); cursor:pointer; }

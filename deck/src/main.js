@@ -1,0 +1,4 @@
+import './styles/deck.css'; import './styles/guide.css';
+import { CURRICULUM } from './data/curriculum.js'; import { createProgress } from './lib/progress.js'; import { createFollow } from './lib/follow.js'; import { renderDeck } from './views/deck.js'; import { renderGuide } from './views/guide.js'; import { renderPresenter } from './views/presenter.js';
+const root=document.getElementById('app'), view=new URLSearchParams(location.search).get('view');
+if(view==='guide') renderGuide(root,{curriculum:CURRICULUM,progress:createProgress()}); else if(view==='presenter'){const start=Date.now(),p=renderPresenter(root,{curriculum:CURRICULUM,clock:()=>Date.now()-start});setInterval(()=>p.tick(),1000);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')p.goTo(p.current()+1);if(e.key==='ArrowLeft')p.goTo(p.current()-1)});}else renderDeck(root,{curriculum:CURRICULUM,follow:createFollow({transport:null,onChange:()=>{}})});
