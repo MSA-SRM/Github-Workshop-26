@@ -1,0 +1,18 @@
+@import './tokens.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--u-canvas);
+  color: var(--u-fg);
+  font-family: var(--u-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+#oct-sprite-host { display: none; }
+
+.oct { vertical-align: -0.125em; }
+
+.u-section-heading::after { content: '/'; color: var(--u-accent); }
+.u-section-heading { text-transform: lowercase; letter-spacing: -0.02em; }
