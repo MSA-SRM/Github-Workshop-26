@@ -200,7 +200,7 @@ export const LABS = [
     ],
   },
   {
-    id: 'l6', n: 6, actId: 'a4', title: 'Open the PR', minutes: 5,
+    id: 'l6', n: 6, actId: 'a4', title: 'Open the PR', minutes: 8,
     steps: [
       { id: 'l6s1', text: 'Click Compare & pull request', icons: ['git-pull-request'] },
       { id: 'l6s2', text: 'Verify base and compare out loud together', icons: ['arrow-right', 'git-compare'] },
