@@ -29,6 +29,12 @@ export function renderDeck(root, { curriculum, follow }) {
       el.append(h, ol);
     }) }));
   });
+  const actById = Object.fromEntries(curriculum.acts.map(act => [act.id, act]));
+  slides.forEach((entry, i) => {
+    entry.el.dataset.act = actById[entry.actId].slug;
+    entry.el.dataset.position = `${String(i + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    entry.el.setAttribute('aria-label', `${actById[entry.actId].title}, slide ${i + 1} of ${slides.length}`);
+  });
   const stage = document.createElement('div'); stage.className = 'stage'; slides.forEach(s => stage.append(s.el)); root.append(stage);
   let index = 0;
   const pill = document.createElement('button'); pill.className = 'rejoin-pill'; pill.type = 'button'; pill.textContent = 'Rejoin presenter';

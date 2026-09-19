@@ -1,13 +1,57 @@
 @import './base.css';
-.deck { height: 100vh; overflow: hidden; }
-.deck .stage { height: 100%; }
-.deck .slide { display:none; height:100%; padding:6vh 7vw; flex-direction:column; justify-content:center; gap:.6em; font-size:var(--u-deck-body); }
+
+/* Every slide uses the same stage coordinates. The content's first line never
+   shifts simply because the previous slide happened to have less copy. */
+.deck { height:100vh; min-height:600px; overflow:hidden; }
+.deck .stage { height:100%; }
+.deck .slide {
+  display:none;
+  position:relative;
+  height:100%;
+  padding:clamp(190px, 37vh, 480px) 10vw 8vh;
+  flex-direction:column;
+  justify-content:flex-start;
+  gap:clamp(14px, 1.5vh, 24px);
+  font-size:var(--u-deck-body);
+}
 .deck .slide.is-active { display:flex; }
-.deck .u-section-heading { font-size:var(--u-deck-display); margin:0; font-weight:800; }
-.deck .act-title { font-size:1.4em; color:var(--u-fg-muted); margin:0; }
-.deck .beat { font-size:1.5em; line-height:1.25; max-width:22ch; margin:0; }
-.deck .icon-row { display:flex; gap:.5em; color:var(--u-accent); flex-wrap:wrap; }
-.deck .lab-title { font-size:1.3em; color:var(--u-accent); margin:0 0 .4em; }
-.deck .slide[data-kind="lab"] ol { font-size:1em; line-height:1.7; margin:0; padding-left:1.4em; }
+.deck .slide::before {
+  content:attr(data-act) '/';
+  position:absolute;
+  inset:clamp(28px, 5vh, 72px) auto auto 10vw;
+  color:var(--u-text-accent);
+  font-size:clamp(13px, 1.1vw, 18px);
+  font-weight:750;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.deck .slide::after {
+  content:attr(data-position);
+  position:absolute;
+  inset:auto 10vw clamp(24px, 4vh, 56px) auto;
+  color:var(--u-fg-muted);
+  font-size:clamp(13px, 1vw, 17px);
+  font-variant-numeric:tabular-nums;
+  letter-spacing:.06em;
+}
+.deck .u-section-heading { font-size:var(--u-deck-display); line-height:.9; margin:0; font-weight:800; max-width:12ch; }
+.deck .act-title { font-size:clamp(27px, 2.1vw, 42px); color:var(--u-fg-muted); margin:0; max-width:30ch; }
+.deck .beat { font-size:clamp(36px, 3.2vw, 62px); line-height:1.14; letter-spacing:-.025em; max-width:28ch; margin:0; text-wrap:balance; }
+.deck .icon-row { display:flex; gap:clamp(10px, .8vw, 18px); color:var(--u-accent); flex-wrap:wrap; }
+.deck .icon-row .oct { inline-size:clamp(28px, 2.3vw, 44px); block-size:clamp(28px, 2.3vw, 44px); }
+.deck .lab-title { font-size:clamp(32px, 3vw, 56px); color:var(--u-accent); line-height:1.08; margin:0 0 .2em; max-width:22ch; }
+.deck .slide[data-kind="lab"] ol { columns:2; column-gap:3em; font-size:clamp(22px, 1.8vw, 34px); line-height:1.42; margin:0; padding-left:1.15em; max-width:38ch; }
+.deck .slide[data-kind="lab"] li { break-inside:avoid; margin-bottom:.35em; }
 .deck .slide[data-kind="lab"] li.is-warn { color:var(--u-lime); font-weight:700; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .deck .slide.is-active { animation:slide-enter 180ms ease-out both; }
+  @keyframes slide-enter { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+}
+@media (max-width:700px) {
+  .deck .slide { padding-inline:7vw; padding-top:28vh; }
+  .deck .slide::before { left:7vw; }
+  .deck .slide::after { right:7vw; }
+  .deck .slide[data-kind="lab"] ol { columns:1; }
+}
 .rejoin-pill { position:fixed; inset-block-end:24px; inset-inline-end:24px; padding:12px 22px; border:0; border-radius:999px; background:var(--u-accent); color:#000; font:600 18px var(--u-font); cursor:pointer; }
