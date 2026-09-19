@@ -1,0 +1,25 @@
+{
+  "name": "deck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "sprite": "node scripts/build-sprite.mjs",
+    "dev": "npm run sprite && vite",
+    "build": "npm run sprite && vite build",
+    "build:offline": "npm run sprite && vite build --mode offline",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@primer/octicons": "^19.38.0",
+    "happy-dom": "^20.14.5",
+    "vite": "^7.3.6",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^3.2.7"
+  }
+}
